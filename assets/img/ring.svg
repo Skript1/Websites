@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Ring ropes">
+<rect width="1200" height="900" fill="#07080A"/>
+
+<rect width="1200" height="900" fill="url(#g)"/>
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#14171C"/><stop offset="1" stop-color="#07080A"/></linearGradient></defs>
+<rect x="0" y="263.0" width="1200" height="14" fill="#F1EDE3" opacity="0.16"/><rect x="0" y="263.0" width="1200" height="3" fill="#F1EDE3" opacity="0.30"/><rect x="0" y="407.0" width="1200" height="14" fill="#F1EDE3" opacity="0.23"/><rect x="0" y="407.0" width="1200" height="3" fill="#F1EDE3" opacity="0.40"/><rect x="0" y="551.0" width="1200" height="14" fill="#F1EDE3" opacity="0.30"/><rect x="0" y="551.0" width="1200" height="3" fill="#F1EDE3" opacity="0.50"/><rect x="0" y="695.0" width="1200" height="14" fill="#F1EDE3" opacity="0.37"/><rect x="0" y="695.0" width="1200" height="3" fill="#F1EDE3" opacity="0.60"/><rect x="132.0" y="162.0" width="26" height="648.0" fill="#14171C"/><rect x="132.0" y="162.0" width="6" height="648.0" fill="#C81E2D" opacity=".85"/><rect x="996.0" y="162.0" width="26" height="648.0" fill="#14171C"/><rect x="996.0" y="162.0" width="6" height="648.0" fill="#C81E2D" opacity=".85"/>
+<defs>
+<pattern id="ht1p" width="19" height="19" patternUnits="userSpaceOnUse">
+<circle cx="9.5" cy="9.5" r="3.00" fill="#C81E2D"/>
+</pattern>
+<linearGradient id="ht1g" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/>
+</linearGradient>
+<mask id="ht1m"><rect width="1200" height="900" fill="url(#ht1g)"/></mask>
+</defs>
+<rect width="1200" height="900" fill="url(#ht1p)" opacity="0.3" mask="url(#ht1m)"/>
+</svg>
