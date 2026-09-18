@@ -60,13 +60,20 @@ this folder, build command none.
 
 ## Before launch — checklist
 
-1. **Photos.** The styled grey tiles are placeholders. Drop images into `assets/img/`
-   and set them as backgrounds:
-   ```html
-   <div class="photo" style="background-image:url('assets/img/ring.jpg')"></div>
-   ```
-   Wanted: a portrait of Pepe, plus ring / heavy bags / mitt work / wraps / the corner.
-   Also add `assets/img/og.jpg` (1200×630) for link previews.
+1. **Photos — still the biggest gap.** The image slots currently hold *generated
+   artwork* (`build/tiles.py` → `assets/img/*.svg`): flat graphic compositions in the
+   site palette. They are deliberately not photographic, so nobody mistakes them for
+   pictures of the actual gym, and they make the layout read as finished for a pitch.
+   They are not a substitute for launch.
+
+   Replace each `<img>` in the ribbon, the gallery and the coach portrait with real
+   photography — ring, heavy bags, mitt work, wraps, and a portrait of Pepe — and
+   delete the "Placeholder artwork" captions underneath. Also add `assets/img/og.jpg`
+   (1200×630) for link previews.
+
+   Stock photos are a poor fallback here: pictures of other gyms and other boxers on a
+   real business site imply this gym and these people. Fine for a pitch, wrong for
+   launch.
 2. **Form endpoint.** `contact.html` points at a Formspree placeholder. Create a form
    at formspree.io and paste the endpoint in. Until then the form tells people to call
    rather than silently dropping the message.

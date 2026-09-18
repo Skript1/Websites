@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500" role="img" aria-label="The corner">
+<rect width="1200" height="1500" fill="#07080A"/>
+
+<circle cx="600.0" cy="495.0" r="480.0" fill="#C81E2D" opacity=".85"/>
+<circle cx="600.0" cy="450.0" r="252.0" fill="#F1EDE3" opacity=".95"/>
+<path d="M 168.00000000000003 1540 Q 192.0 900.0 600.0 869.9999999999999 Q 1008.0 900.0 1032.0 1540 Z"
+      fill="#F1EDE3" opacity=".95"/>
+<path d="M 600.0 869.9999999999999 L 600.0 1540" stroke="#07080A" stroke-width="3" opacity=".25"/>
+<defs>
+<pattern id="ht7p" width="17" height="17" patternUnits="userSpaceOnUse">
+<circle cx="8.5" cy="8.5" r="3.60" fill="#07080A"/>
+</pattern>
+<linearGradient id="ht7g" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#000"/><stop offset="1" stop-color="#fff"/>
+</linearGradient>
+<mask id="ht7m"><rect width="1200" height="1500" fill="url(#ht7g)"/></mask>
+</defs>
+<rect width="1200" height="1500" fill="url(#ht7p)" opacity="0.42" mask="url(#ht7m)"/>
+</svg>
