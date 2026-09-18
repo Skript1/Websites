@@ -1,0 +1,5 @@
+# Preview deployment — not the live site.
+# Kept out of search results so it can never compete with
+# spacetimeboxing.com in Google.
+User-agent: *
+Disallow: /
