@@ -1,109 +1,103 @@
 # Spacetime Boxing — website
 
-A fast, single-page static site for Spacetime Boxing (Hollywood, CA).
-No build step, no framework, no dependencies. Three files do the work:
-`index.html`, `assets/css/style.css`, `assets/js/main.js`.
+Static site for Spacetime Boxing (Hollywood, CA). No framework, no dependencies,
+no third-party requests at runtime.
+
+## The idea
+
+Boxing measures itself in time: three minutes of work, one minute of rest. The gym
+is literally named after time. So the site is built as a fight card on a clock —
+a rail of round markers down the page edge, a round timer in the hero that actually
+runs, a session broken into real timecodes, and monospace type wherever the page
+reports a number, the way an instrument would.
+
+That concept decides the details: numbering appears only where the content really is
+a sequence (the session breakdown), never as decoration on a list of options.
+
+**Palette** ink `#07080A` · bone `#F1EDE3` · blood `#C81E2D` · steel `#7C8794` ·
+corner amber `#E8B44A` (spent once, on the clock's rest state).
+**Type** Anton (fight-poster display) · Inter (body) · JetBrains Mono (data).
+
+## Pages
+
+| File | Purpose |
+|---|---|
+| `index.html` | Home — hero, positioning, training overview, coach, gym |
+| `classes.html` | Training formats, how a session runs, what to bring |
+| `about.html` | Pepe Reilly, credentials, Wild Card |
+| `contact.html` | Booking form, contact details, FAQ (with FAQ schema) |
+| `404.html` | Not-found page |
+
+Split into four pages because Google ranks pages, not sections — four pages means
+four entry points for local searches like "boxing classes Hollywood".
+
+## Editing
+
+`build/pages.py` generates the four pages from one shared shell, so the header,
+footer and metadata cannot drift apart. Change content there and run:
+
+```bash
+python3 build/pages.py
+```
+
+If you would rather hand-edit the HTML from now on, that is fine — just delete
+`build/pages.py` so there is only one source of truth. Don't keep both and edit both.
+
+The design tokens (color, type, spacing, container width) are CSS custom properties
+in `:root` at the top of `assets/css/style.css`. Change them there and the whole
+site follows.
 
 ## Run it locally
 
 ```bash
 npx http-server . -p 8080
-# → http://localhost:8080
 ```
-
-Any static server works, or just open `index.html`.
 
 ## Deploy
 
-Drop the folder on any static host — Netlify, Vercel, Cloudflare Pages,
-GitHub Pages, S3. There is nothing to compile.
+Any static host — Netlify, Cloudflare Pages, GitHub Pages, S3. Publish directory is
+this folder, build command none.
 
-- **Netlify / Cloudflare Pages:** publish directory = this folder, build command = none.
-- **GitHub Pages:** push this folder to the `gh-pages` branch or set Pages to serve `/`.
+## Before launch — checklist
 
-## Before you launch — checklist
-
-Everything below is a real value that needs confirming or a placeholder to swap.
-
-1. **Photos.** The site currently shows styled placeholder tiles. Drop real images into
-   `assets/img/` and replace each `<div class="photo" …>` with an `<img>`, or set a
-   background on it:
+1. **Photos.** The styled grey tiles are placeholders. Drop images into `assets/img/`
+   and set them as backgrounds:
    ```html
    <div class="photo" style="background-image:url('assets/img/ring.jpg')"></div>
    ```
-   Wanted: one portrait of Pepe (`coach.jpg`, portrait crop) and 4–5 gym shots
-   (ring, heavy bags, mitt work, wraps, the corner). Also add `assets/img/og.jpg`
-   (1200×630) for link previews.
-
-2. **Contact form endpoint.** `index.html` → `<form id="bookForm" action="…">` points at a
-   Formspree placeholder. Create a form at [formspree.io](https://formspree.io) (free tier
-   is fine) and paste your endpoint in. Until you do, the form politely tells visitors to
-   call instead — it never silently drops a message.
-
-3. **Prices.** Deliberately not published. The site says "clear rates and package options,
-   no surprises — call for the current rate sheet," which matches how the gym already talks
-   about pricing. If you want published rates, add a pricing section and I'll build it.
-
-4. **Hours.** Listed as Mon–Sat, 7:00 AM – 2:00 PM (from the public listing). Correct it in
-   two places if it's wrong: the `.contact` list, the footer, and the JSON-LD block at the
-   bottom of `index.html`.
-
-5. **Social links.** The JSON-LD `sameAs` array is empty. Add Instagram/YouTube URLs there,
-   and add icon links to the footer if you want them visible.
-
-6. **Domain.** The canonical URL, Open Graph URLs, `sitemap.xml` and `robots.txt` all assume
-   `https://www.spacetimeboxing.com/`. Change them together if the domain changes.
-
-## The 3D layer
-
-The site has a real 3D layer, built entirely with CSS 3D transforms — no three.js, no
-WebGL, no added weight:
-
-- **Hero** is a room in perspective: floor and ceiling grids rotated on X and scrolling
-  toward a vanishing line, with the headline, copy, buttons and stats each drifting at a
-  different depth as the pointer moves (`data-depth` on the element, eased in `main.js`).
-- **Headline** is extruded with eight stacked text-shadow layers rather than a flat shadow.
-- **Cards and photo tiles** tilt toward the cursor (`data-tilt`), with their inner content
-  raised on `translateZ` so it separates from the surface, plus a glare that tracks the
-  pointer.
-- **Reveals** rotate in on X and deal in from the side instead of fading up.
-
-It is all transform/opacity, so it runs on the compositor — no layout, no repaint. It also
-switches itself off completely for `prefers-reduced-motion` and for coarse pointers
-(phones and tablets get the flat, fast version, since tilt needs a cursor).
-
-Tuning: the tilt angle is `MAX` in `main.js`; depth amounts are the `data-depth` values in
-`index.html`; the runway speed is the `runway` keyframe duration in `style.css`.
+   Wanted: a portrait of Pepe, plus ring / heavy bags / mitt work / wraps / the corner.
+   Also add `assets/img/og.jpg` (1200×630) for link previews.
+2. **Form endpoint.** `contact.html` points at a Formspree placeholder. Create a form
+   at formspree.io and paste the endpoint in. Until then the form tells people to call
+   rather than silently dropping the message.
+3. **Prices.** Not published — the site says to call for the current rate sheet, which
+   matches how the gym already talks about pricing. Say the word and I'll add a rates
+   section.
+4. **Hours.** Listed as Mon–Sat 07:00–14:00, taken from the public listing, not from
+   Pepe. Confirm, then correct them in `build/pages.py` (`HOURS`) and in the JSON-LD.
+5. **Phone.** `(323) 206-2804`, same caveat — confirm it.
+6. **Social links.** The JSON-LD `sameAs` array is empty. Add Instagram there and to
+   the footer.
+7. **Domain.** Everything canonical points at `https://www.spacetimeboxing.com`.
+   The live site is currently on Wix, so moving means repointing DNS — and leaving the
+   MX records alone if the gym has email on that domain.
 
 ## What's built in
 
-- **SEO:** semantic headings, meta description, canonical, Open Graph + Twitter cards,
-  `SportsActivityLocation` JSON-LD with address, phone, hours and coach — so the gym can
-  surface properly in Google's local results.
-- **Accessibility:** skip link, visible focus rings, labelled form fields with inline errors,
-  `aria-live` form status, keyboard-operable menu (Esc closes), and full
-  `prefers-reduced-motion` support that disables every animation.
-- **Performance:** zero dependencies and zero third-party requests — Anton and Inter are
-  self-hosted in `assets/fonts/` (~160 KB total, subset to latin) and preloaded, so nothing
-  is fetched from Google. All visuals are CSS/SVG: no hero video, no image payload until
-  you add photos.
-- **Progressive enhancement:** the page is complete and readable with JavaScript off.
-  JS only adds reveals, counters, the mobile menu and async form submit.
-- **Responsive:** verified at 1440px and 390px with zero horizontal overflow.
+- **SEO** — per-page titles, descriptions and canonicals; Open Graph and Twitter cards;
+  `SportsActivityLocation` JSON-LD on every page with address, phone, hours and coach;
+  `FAQPage` schema on the contact page; a four-URL sitemap.
+- **Accessibility** — skip link, visible focus rings, labelled fields with inline errors,
+  `aria-live` form status, `aria-current` on the active nav item, keyboard-operable menu,
+  and a full `prefers-reduced-motion` path that flattens every animation including the
+  round clock.
+- **Performance** — zero dependencies and zero third-party requests. Anton, Inter and
+  JetBrains Mono are self-hosted (~190 KB total, latin subsets) and preloaded.
+- **Progressive enhancement** — every page is complete with JavaScript off. JS adds the
+  clock, reveals, the rail indicator, tilt and async form submit.
+- **3D layer** — CSS 3D transforms only: a hero in perspective with pointer parallax at
+  per-element depths, an extruded headline, and cards that tilt toward the cursor with
+  their content raised on `translateZ`. Transform-only, so it runs on the compositor.
+  Disabled for coarse pointers and reduced motion.
 
-## Structure
-
-```
-index.html            # the whole page
-404.html              # styled not-found page
-robots.txt
-sitemap.xml
-assets/
-  css/style.css       # design tokens at the top of the file
-  js/main.js          # progressive enhancement only
-  img/favicon.svg
-  fonts/             # self-hosted Anton + Inter (woff2)
-```
-
-Colours, spacing and the container width are CSS custom properties in `:root` at the top of
-`style.css` — change the palette there and the whole site follows.
+Verified at 1440px and 390px: no horizontal overflow, no console errors, clock ticking.
