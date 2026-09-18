@@ -154,6 +154,85 @@
     });
   }
 
+
+  /* ── 3D: hero pointer parallax ─────────────────────────────────── */
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const canTilt = fine && !reduced;
+
+  const hero = document.querySelector('.hero');
+  const stage = document.querySelector('[data-stage]');
+
+  if (hero && stage && canTilt) {
+    // each depth layer declares how far it drifts
+    stage.querySelectorAll('[data-depth]').forEach((el) => {
+      el.style.setProperty('--d', el.dataset.depth);
+    });
+
+    let px = 0, py = 0, tx = 0, ty = 0, raf = null;
+
+    const glide = () => {
+      // ease toward the pointer instead of snapping to it
+      px += (tx - px) * 0.08;
+      py += (ty - py) * 0.08;
+      hero.style.setProperty('--px', px.toFixed(4));
+      hero.style.setProperty('--py', py.toFixed(4));
+
+      if (Math.abs(tx - px) > 0.001 || Math.abs(ty - py) > 0.001) {
+        raf = requestAnimationFrame(glide);
+      } else {
+        raf = null;
+      }
+    };
+
+    const kick = () => { if (raf === null) raf = requestAnimationFrame(glide); };
+
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width * 2 - 1;   // -1 … 1
+      ty = (e.clientY - r.top) / r.height * 2 - 1;
+      kick();
+    }, { passive: true });
+
+    hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; kick(); });
+  }
+
+  /* ── 3D: card / tile tilt ──────────────────────────────────────── */
+  if (canTilt) {
+    const MAX = 9; // degrees
+
+    document.querySelectorAll('[data-tilt]').forEach((el) => {
+      let frame = null;
+
+      const move = (e) => {
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          frame = null;
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width;
+          const y = (e.clientY - r.top) / r.height;
+
+          el.style.setProperty('--ry', ((x - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+          el.style.setProperty('--rx', ((0.5 - y) * 2 * MAX).toFixed(2) + 'deg');
+          el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+          el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+        });
+      };
+
+      const leave = () => {
+        if (frame) { cancelAnimationFrame(frame); frame = null; }
+        el.classList.remove('is-tilting');
+        el.style.setProperty('--rx', '0deg');
+        el.style.setProperty('--ry', '0deg');
+      };
+
+      el.addEventListener('pointerenter', () => el.classList.add('is-tilting'));
+      el.addEventListener('pointermove', move, { passive: true });
+      el.addEventListener('pointerleave', leave);
+      // a card can be focused by keyboard — never leave it skewed
+      el.addEventListener('blur', leave, true);
+    });
+  }
+
   /* ── year ──────────────────────────────────────────────────────── */
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());

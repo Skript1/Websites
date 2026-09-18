@@ -66,26 +66,30 @@
     <div class="hero__bg" aria-hidden="true">
       <div class="hero__glow hero__glow--a"></div>
       <div class="hero__glow hero__glow--b"></div>
-      <div class="hero__grid"></div>
+      <div class="hero__space">
+        <div class="hero__plane hero__plane--floor"></div>
+        <div class="hero__plane hero__plane--ceil"></div>
+      </div>
+      <div class="hero__horizon"></div>
     </div>
 
-    <div class="wrap hero__inner">
-      <p class="eyebrow reveal">Hollywood, California · Est. at Wild Card</p>
-      <h1 class="hero__title reveal">
+    <div class="wrap hero__inner" data-stage>
+      <p class="eyebrow reveal" data-depth="18">Hollywood, California · Est. at Wild Card</p>
+      <h1 class="hero__title reveal" data-depth="46">
         <span class="line">Real boxing.</span>
         <span class="line accent">Taught right.</span>
       </h1>
-      <p class="hero__lede reveal">
+      <p class="hero__lede reveal" data-depth="26">
         Private training and small classes with <strong>Pepe Reilly</strong> — 1992 U.S. Olympian,
         National Golden Gloves champion, and the trainer behind world champions.
         Crisp footwork, precise punches, championship conditioning. Total beginners welcome.
       </p>
-      <div class="hero__cta reveal">
+      <div class="hero__cta reveal" data-depth="34">
         <a class="btn btn--lg" href="#book">Book your first session</a>
         <a class="btn btn--ghost btn--lg" href="#training">See training options</a>
       </div>
 
-      <dl class="stats reveal">
+      <dl class="stats reveal" data-depth="14">
         <div class="stat"><dt>Olympic Team</dt><dd><span data-count="1992" data-plain>1992</span></dd></div>
         <div class="stat"><dt>Pro record</dt><dd><span data-count="15">0</span>–4 <em>· 11 KO</em></dd></div>
         <div class="stat"><dt>Years coaching</dt><dd><span data-count="25">0</span>+</dd></div>
@@ -128,14 +132,14 @@
   <!-- ══ TRAINING ══ -->
   <section class="section section--alt" id="training">
     <div class="wrap">
-      <div class="sec-head reveal">
+      <div class="sec-head reveal reveal--3d">
         <p class="eyebrow">Training</p>
         <h2 class="h2">Pick your round</h2>
         <p class="lede">Every option starts with fundamentals. Where you go from there is up to you.</p>
       </div>
 
       <div class="cards">
-        <article class="card reveal">
+        <article class="card reveal" data-tilt>
           <div class="card__num" aria-hidden="true">01</div>
           <h3>Private 1‑on‑1</h3>
           <p>Undivided attention on the mitts. The fastest way to build clean technique, whether it's your first day or your fifteenth fight.</p>
@@ -147,7 +151,7 @@
           <p class="card__meta">Best for: fast progress, camera-ready prep, fight camps</p>
         </article>
 
-        <article class="card reveal">
+        <article class="card reveal" data-tilt>
           <div class="card__num" aria-hidden="true">02</div>
           <h3>Partner &amp; small group</h3>
           <p>Bring a friend or join a handful of people. Real coaching, real drills, enough eyes on you that nothing slips.</p>
@@ -159,7 +163,7 @@
           <p class="card__meta">Best for: training with a partner, staying accountable</p>
         </article>
 
-        <article class="card reveal">
+        <article class="card reveal" data-tilt>
           <div class="card__num" aria-hidden="true">03</div>
           <h3>Boxing class</h3>
           <p>Fundamentals for beginners, technical work for experienced athletes, and high-intensity conditioning that leaves nothing on the floor.</p>
@@ -171,7 +175,7 @@
           <p class="card__meta">Best for: fitness, structure, meeting people</p>
         </article>
 
-        <article class="card reveal">
+        <article class="card reveal" data-tilt>
           <div class="card__num" aria-hidden="true">04</div>
           <h3>Sparring</h3>
           <p>Light, controlled sparring for everyone who wants it — and moderate sparring when you're genuinely ready. Supervised every round.</p>
@@ -195,7 +199,7 @@
   <section class="section" id="coach">
     <div class="wrap grid-coach">
       <div class="coach__media reveal" aria-hidden="true">
-        <div class="photo photo--portrait" data-label="Coach portrait"></div>
+        <div class="photo photo--portrait" data-tilt data-label="Coach portrait"></div>
         <div class="badge">
           <strong>1992</strong>
           <span>Barcelona<br>Olympic Team USA</span>
@@ -233,7 +237,7 @@
   <!-- ══ GYM ══ -->
   <section class="section section--dark" id="gym">
     <div class="wrap">
-      <div class="sec-head reveal">
+      <div class="sec-head reveal reveal--3d">
         <p class="eyebrow">The room</p>
         <h2 class="h2">You'll be training at Wild Card</h2>
         <p class="lede">
@@ -243,11 +247,11 @@
       </div>
 
       <div class="gallery">
-        <div class="photo reveal" data-label="Ring"></div>
-        <div class="photo reveal" data-label="Heavy bags"></div>
-        <div class="photo reveal" data-label="Mitt work"></div>
-        <div class="photo reveal" data-label="Wraps"></div>
-        <div class="photo reveal" data-label="The corner"></div>
+        <div class="photo reveal" data-tilt data-label="Ring"></div>
+        <div class="photo reveal" data-tilt data-label="Heavy bags"></div>
+        <div class="photo reveal" data-tilt data-label="Mitt work"></div>
+        <div class="photo reveal" data-tilt data-label="Wraps"></div>
+        <div class="photo reveal" data-tilt data-label="The corner"></div>
       </div>
     </div>
   </section>
@@ -255,25 +259,25 @@
   <!-- ══ GET STARTED ══ -->
   <section class="section" id="start">
     <div class="wrap">
-      <div class="sec-head reveal">
+      <div class="sec-head reveal reveal--3d">
         <p class="eyebrow">First time?</p>
         <h2 class="h2">Here's exactly how it goes</h2>
       </div>
 
       <ol class="steps">
-        <li class="reveal"><span class="steps__n">1</span>
+        <li class="reveal reveal--3d"><span class="steps__n">1</span>
           <h3>Reach out</h3>
           <p>Call, text, or send the form. Tell us your experience level — "none" is a perfectly good answer.</p>
         </li>
-        <li class="reveal"><span class="steps__n">2</span>
+        <li class="reveal reveal--3d"><span class="steps__n">2</span>
           <h3>We book your slot</h3>
           <p>We'll match you to a time and a format, and send you the rates. Training hours run mornings through early afternoon.</p>
         </li>
-        <li class="reveal"><span class="steps__n">3</span>
+        <li class="reveal reveal--3d"><span class="steps__n">3</span>
           <h3>Show up</h3>
           <p>Wear athletic clothes and bring water. Gloves and wraps can be sorted at the gym — we'll tell you what to get once we've seen you move.</p>
         </li>
-        <li class="reveal"><span class="steps__n">4</span>
+        <li class="reveal reveal--3d"><span class="steps__n">4</span>
           <h3>Learn something real</h3>
           <p>Day one you'll learn stance, guard, and the jab. You'll leave tired, and you'll leave knowing something you didn't know that morning.</p>
         </li>
@@ -355,7 +359,7 @@
   <!-- ══ FAQ ══ -->
   <section class="section" id="faq">
     <div class="wrap">
-      <div class="sec-head reveal">
+      <div class="sec-head reveal reveal--3d">
         <p class="eyebrow">Questions</p>
         <h2 class="h2">Before you come in</h2>
       </div>

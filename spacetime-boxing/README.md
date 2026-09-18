@@ -54,6 +54,27 @@ Everything below is a real value that needs confirming or a placeholder to swap.
 6. **Domain.** The canonical URL, Open Graph URLs, `sitemap.xml` and `robots.txt` all assume
    `https://www.spacetimeboxing.com/`. Change them together if the domain changes.
 
+## The 3D layer
+
+The site has a real 3D layer, built entirely with CSS 3D transforms — no three.js, no
+WebGL, no added weight:
+
+- **Hero** is a room in perspective: floor and ceiling grids rotated on X and scrolling
+  toward a vanishing line, with the headline, copy, buttons and stats each drifting at a
+  different depth as the pointer moves (`data-depth` on the element, eased in `main.js`).
+- **Headline** is extruded with eight stacked text-shadow layers rather than a flat shadow.
+- **Cards and photo tiles** tilt toward the cursor (`data-tilt`), with their inner content
+  raised on `translateZ` so it separates from the surface, plus a glare that tracks the
+  pointer.
+- **Reveals** rotate in on X and deal in from the side instead of fading up.
+
+It is all transform/opacity, so it runs on the compositor — no layout, no repaint. It also
+switches itself off completely for `prefers-reduced-motion` and for coarse pointers
+(phones and tablets get the flat, fast version, since tilt needs a cursor).
+
+Tuning: the tilt angle is `MAX` in `main.js`; depth amounts are the `data-depth` values in
+`index.html`; the runway speed is the `runway` keyframe duration in `style.css`.
+
 ## What's built in
 
 - **SEO:** semantic headings, meta description, canonical, Open Graph + Twitter cards,
