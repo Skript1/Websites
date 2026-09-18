@@ -62,8 +62,10 @@ Everything below is a real value that needs confirming or a placeholder to swap.
 - **Accessibility:** skip link, visible focus rings, labelled form fields with inline errors,
   `aria-live` form status, keyboard-operable menu (Esc closes), and full
   `prefers-reduced-motion` support that disables every animation.
-- **Performance:** ~0 dependencies. One CSS file, one JS file, one webfont request.
-  All visuals are CSS/SVG — no hero video, no image payload until you add photos.
+- **Performance:** zero dependencies and zero third-party requests — Anton and Inter are
+  self-hosted in `assets/fonts/` (~160 KB total, subset to latin) and preloaded, so nothing
+  is fetched from Google. All visuals are CSS/SVG: no hero video, no image payload until
+  you add photos.
 - **Progressive enhancement:** the page is complete and readable with JavaScript off.
   JS only adds reveals, counters, the mobile menu and async form submit.
 - **Responsive:** verified at 1440px and 390px with zero horizontal overflow.
@@ -79,6 +81,7 @@ assets/
   css/style.css       # design tokens at the top of the file
   js/main.js          # progressive enhancement only
   img/favicon.svg
+  fonts/             # self-hosted Anton + Inter (woff2)
 ```
 
 Colours, spacing and the container width are CSS custom properties in `:root` at the top of
