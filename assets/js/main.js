@@ -110,8 +110,10 @@
   const runCount = (el) => {
     const target = Number(el.dataset.count);
     if (!Number.isFinite(target)) return;
-    if (reduced) { el.textContent = String(target); return; }
+    if (reduced || document.hidden) { el.textContent = String(target); return; }
     const start = performance.now(), dur = 1000;
+    /* rAF is throttled in background tabs; make sure the real number lands regardless. */
+    setTimeout(() => { el.textContent = String(target); }, dur + 400);
     const step = (now) => {
       const t = Math.min((now - start) / dur, 1);
       el.textContent = String(Math.round(target * (1 - Math.pow(1 - t, 3))));
@@ -209,9 +211,23 @@
     form.addEventListener('submit', async (e) => {
       if (!validate()) { e.preventDefault(); return; }
       if (form.action.includes('your-form-id')) {
+        /* No form backend wired up yet: hand the enquiry to the visitor's mail client
+           so the page still works end to end. Swap the Formspree id in contact.html
+           to post it server-side instead. */
         e.preventDefault();
-        status.className = 'form__status is-bad';
-        status.textContent = 'Form endpoint not configured yet — please call (323) 206-2804.';
+        const val = (n) => (form.elements[n] && form.elements[n].value.trim()) || '';
+        const body = [
+          'Name: ' + val('name'),
+          'Contact: ' + val('contact'),
+          'Experience: ' + val('level'),
+          '',
+          val('goal')
+        ].join(String.fromCharCode(10));
+        window.location.href = 'mailto:hello@spacetimeboxing.com'
+          + '?subject=' + encodeURIComponent('Session enquiry — ' + (val('name') || 'website'))
+          + '&body=' + encodeURIComponent(body);
+        status.className = 'form__status is-ok';
+        status.textContent = "Opening your email app — or just call (323) 206-2804.";
         return;
       }
       e.preventDefault();
