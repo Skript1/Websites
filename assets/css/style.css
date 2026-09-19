@@ -209,11 +209,11 @@ p:last-child{margin-bottom:0}
 /* ── hero ───────────────────────────────────────────────────────────── */
 .hero{position:relative;min-height:92svh;display:flex;align-items:center;padding:132px 0 72px;overflow:hidden;perspective:1100px;perspective-origin:50% 45%}
 .hero__bg{position:absolute;inset:0;z-index:0}
-.hero__photo{position:absolute;inset:0;background:#07080A url("../img/hero.jpg") center 38%/cover no-repeat;filter:grayscale(.5) contrast(1.08) brightness(.52);opacity:.55}
-.hero__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,10,.82) 0%,rgba(7,8,10,.32) 42%,rgba(7,8,10,.95) 100%)}
+.hero__photo{position:absolute;inset:0;background:#07080A url("../img/hero.jpg") center 42%/cover no-repeat;filter:grayscale(.45) contrast(1.05) brightness(.8) blur(1.5px);opacity:.75;transform:scale(1.04)}
+.hero__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,10,.72) 0%,rgba(7,8,10,.2) 45%,rgba(7,8,10,.92) 100%)}
 .hero__bg::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 74% 80% at 32% 46%,rgba(7,8,10,.93) 0%,rgba(7,8,10,.6) 44%,transparent 74%);
+  background:radial-gradient(ellipse 70% 78% at 30% 48%,rgba(7,8,10,.86) 0%,rgba(7,8,10,.42) 46%,transparent 76%);
 }
 .hero__glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.4}
 .hero__glow--a{width:58vw;height:58vw;left:-14vw;top:-16vw;background:radial-gradient(circle,#7c1220,transparent 65%);animation:float 20s ease-in-out infinite}

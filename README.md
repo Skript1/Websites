@@ -25,8 +25,10 @@ mostly works but the fonts won't load.)
 
 ## Before it goes live — three things
 
-1. **Photography.** Every image is placeholder stock. See `PHOTO-CREDITS.md`
-   for the list, the sizes, and how to swap them.
+1. **Photography.** Every image is pulled from Pepe's public Instagram
+   without asking, at preview resolution. Fine for showing him; not fine for
+   a live site. Get his permission and his originals — see
+   `PHOTO-CREDITS.md`.
 2. **The booking form.** `contact.html` posts to
    `https://formspree.io/f/your-form-id`. Create a Formspree form (or any
    endpoint that accepts a POST) and put its real URL in the `action`
@@ -34,17 +36,22 @@ mostly works but the fonts won't load.)
    mail client with the enquiry pre-filled, addressed to
    `hello@spacetimeboxing.com` — change that address in `assets/js/main.js`
    if it's wrong.
-3. **Rates.** The site deliberately says "call for the current rate sheet"
+3. **Rates.** The site says rates depend on the format and to text and ask,
    rather than printing prices. If Pepe wants numbers on the page, they go in
    the four cards in `classes.html`.
 
 ## Facts on the page, worth a second check
 
-Pulled from the original draft, not independently verified:
-1992 U.S. Olympic team / National Golden Gloves champion; pro record 15–4,
-11 KO; 25+ years coaching; cornering Ray Beltran; Wild Card, 1123 Vine Street;
-phone (323) 206-2804; hours Mon–Sat 07:00–14:00. Confirm each with Pepe
-before publishing — the record and the hours especially.
+Confirmed against his own sources: the phone (323) 206-2804, the address,
+and the 7am Mon/Wed/Fri class all come from the flyer on his Instagram, and
+the phone also matches his Yelp listing.
+
+Still unverified, from the original draft: pro record 15–4 with 11 KO, 25+
+years coaching, cornering Ray Beltran. Confirm with him before publishing.
+
+Note that Spacetime Boxing, the business, has closed. He trains at Wild Card
+as an individual. The site says nothing that implies otherwise — keep it
+that way.
 
 ## `build/` is stale — don't run it
 
