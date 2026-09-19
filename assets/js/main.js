@@ -211,23 +211,21 @@
     form.addEventListener('submit', async (e) => {
       if (!validate()) { e.preventDefault(); return; }
       if (form.action.includes('your-form-id')) {
-        /* No form backend wired up yet: hand the enquiry to the visitor's mail client
-           so the page still works end to end. Swap the Formspree id in contact.html
-           to post it server-side instead. */
+        /* No form backend wired up yet: hand the enquiry to the visitor's own
+           messaging app, addressed to Pepe. Texting is how people actually
+           reach him. Swap the Formspree id in contact.html to post it
+           server-side instead. */
         e.preventDefault();
         const val = (n) => (form.elements[n] && form.elements[n].value.trim()) || '';
         const body = [
-          'Name: ' + val('name'),
-          'Contact: ' + val('contact'),
-          'Experience: ' + val('level'),
-          '',
+          val('name'),
+          val('contact'),
+          val('level') ? 'Experience: ' + val('level') : '',
           val('goal')
-        ].join(String.fromCharCode(10));
-        window.location.href = 'mailto:hello@spacetimeboxing.com'
-          + '?subject=' + encodeURIComponent('Session enquiry — ' + (val('name') || 'website'))
-          + '&body=' + encodeURIComponent(body);
+        ].filter(Boolean).join(' / ');
+        window.location.href = 'sms:+13232062804?&body=' + encodeURIComponent(body);
         status.className = 'form__status is-ok';
-        status.textContent = "Opening your email app — or just call (323) 206-2804.";
+        status.textContent = 'Opening a text to Pepe — or just call (323) 206-2804.';
         return;
       }
       e.preventDefault();
